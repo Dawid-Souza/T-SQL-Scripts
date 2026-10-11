@@ -1,0 +1,38 @@
+configuracao.json
+        |
+        v
+Start-Replicacao.ps1
+        |
+        +-------------------------+
+        |                         |
+        v                         v
+Publisher / Controle        Subscriber(s)
+        |                         |
+        |                         +--> Server Audit por instancia
+        |                         +--> Audit Specification por banco
+        |                         +--> SpAuditoriaDmlCapturar
+        |                         +--> ReplicationAudit.dbo.AuditoriaDml
+        |                                      |
+        |                                      v
+        +<--------------------------- Invoke-ReplAuditDispatch
+        |
+        v
+SpReplValidar / ReplDistDiff
+        |
+        +--> OK: encerra evento
+        |
+        +--> DIVERGENTE
+                  |
+                  +--> AutomaticCorrectionEnabled=false: aguarda analise
+                  |
+                  +--> AutomaticCorrectionEnabled=true
+                              |
+                              v
+                     Correcao / Revalidacao
+                              |
+                              v
+                       ReplHisDistDiff
+
+Os bancos, servidores, contas, caminhos, jobs, e-mail e limites sao definidos
+somente em configuracao.json. A topologia real de publicacoes, artigos e
+destinos e descoberta na metadata da replicacao.

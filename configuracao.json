@@ -1,0 +1,22 @@
+{
+  "ControlServer": "SEU-PUBLISHER\\INSTANCIA",
+  "ControlDatabase": "ReplicationAudit",
+  "SubscriberControlDatabase": "ReplicationAudit",
+  "PublisherDatabases": [
+    "BancoOrigem1",
+    "BancoOrigem2"
+  ],
+  "Subscribers": [
+    {
+      "Server": "SEU-SUBSCRIBER\\INSTANCIA",
+      "Databases": [
+        "BancoDestino1",
+        "BancoDestino2"
+      ]
+    }
+  ],
+  "WorkerLogin": "DOMINIO\\ContaDoSqlAgentOuProxy",
+  "ExcludedPrincipals": [
+    "DOMINIO\\ContaDaReplicacao"
+  ]
+}

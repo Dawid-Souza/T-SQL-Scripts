@@ -1,0 +1,59 @@
+{
+  "ControlServer": "SEU-PUBLISHER\\INSTANCIA",
+  "ControlDatabase": "ReplicationAudit",
+  "SubscriberControlDatabase": "ReplicationAudit",
+  "PublisherDatabases": [
+    "BancoOrigem1",
+    "BancoOrigem2"
+  ],
+  "Subscribers": [
+    {
+      "Server": "SEU-SUBSCRIBER\\INSTANCIA",
+      "Databases": [
+        "BancoDestino1",
+        "BancoDestino2"
+      ],
+      "AuditPath": ""
+    }
+  ],
+  "WorkerLogin": "DOMINIO\\ContaSqlAgentOuProxy",
+  "ExcludedPrincipals": [
+    "DOMINIO\\ContaDaReplicacao"
+  ],
+  "InstallPath": "C:\\DBA\\ReplicationAudit",
+  "Connection": {
+    "Encrypt": false,
+    "TrustServerCertificate": true,
+    "CommandTimeoutSeconds": 600
+  },
+  "Audit": {
+    "Name": "Audit_Repl_DML",
+    "SpecificationName": "AuditSpec_Repl_DML",
+    "Path": "",
+    "MaxSizeMb": 64,
+    "MaxRolloverFiles": 5
+  },
+  "Email": {
+    "Enabled": false,
+    "Profile": "DBA",
+    "Recipients": "dba@empresa.com"
+  },
+  "SqlAgent": {
+    "ProxyName": "",
+    "CredentialName": "",
+    "JobOwner": "sa",
+    "JobsEnabled": true,
+    "SubscriberJobName": "DBA - Replication - DML Audit Collector",
+    "PublisherJobName": "DBA - Replication - Custom Validation",
+    "CollectorIntervalMinutes": 1,
+    "PublisherIntervalMinutes": 1
+  },
+  "Processing": {
+    "AutomaticCorrectionEnabled": false,
+    "MaxGroupsPerRun": 100,
+    "MaxValidationItemsPerRun": 20,
+    "MaxCorrectionItemsPerRun": 5,
+    "ValidationRetries": 3,
+    "RetrySeconds": 5
+  }
+}
